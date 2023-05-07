@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Todo
 
 default_message = "to use this button, you need to login :)"
+num_of_todos_per_page = 5
 
 # Create your views here.
 
@@ -22,7 +23,7 @@ def index(request):
     todos = Todo.objects.all()
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(todos, 3) # show 5 todos per page
+    paginator = Paginator(todos, num_of_todos_per_page) # show 5 todos per page
 
     try:
         todo_list = paginator.page(page)
